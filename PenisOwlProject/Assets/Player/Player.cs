@@ -8,6 +8,7 @@ namespace Player
 
     public class Player : MonoBehaviour
     {
+        public float MoveSpeed;
 
         private InputAction _moveAction;
 
@@ -20,7 +21,8 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-
+            Vector2 moveValue = _moveAction.ReadValue<Vector2>();
+            transform.position += new Vector3(moveValue.x, moveValue.y) * MoveSpeed;
         }
     }
 }
