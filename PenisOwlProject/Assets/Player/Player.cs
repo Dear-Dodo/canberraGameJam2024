@@ -12,38 +12,73 @@ namespace Player
         public float DashDistance;
         public float DashTime;
         public float DashCooldown;
+        public float DashLongCooldown;
+        public int DashCharges;
+        public float ReloadTime;
+        public float LaserReloadTime;
+        public bool HasLaser;
 
-        private float _dashCooldown;
+        public SparkleBullet SparklePrefab;
+        public GameObject Laser;
+
+        [HideInInspector]
+        public bool IsDashing = false; //will use this for Iframes
+
+        private bool _canDash = true;
+        private bool _canFire = true;
+        private float _dashCharges;
 
         private InputAction _moveAction;
         private InputAction _dashAction;
+        private InputAction _fireAction;
 
         // Start is called before the first frame update
         void Start()
         {
             _moveAction = InputSystem.actions.FindAction("Move");
             _dashAction = InputSystem.actions.FindAction("Dash");
+            _fireAction = InputSystem.actions.FindAction("Fire");
+
+            _dashCharges = DashCharges;
         }
 
         // Update is called once per frame
         void Update()
         {
             Vector2 moveValue = _moveAction.ReadValue<Vector2>();
+            moveValue = moveValue.normalized * Mathf.Clamp01(moveValue.magnitude); //Fix diagonals being faster on keyboard
+
             bool dashValue = _dashAction.WasPressedThisFrame();
+
+            bool fireValue = _fireAction.IsPressed();
+
             transform.position += new Vector3(moveValue.x, moveValue.y) * MoveSpeed;
-            if (dashValue && _dashCooldown == 0)
+            if (dashValue && _canDash && _dashCharges > 0)
             {
                 StartCoroutine(Dash(moveValue));
             }
 
-            if (_dashCooldown > 0)
+            if(fireValue && _canFire)
             {
-                _dashCooldown -= Time.deltaTime;
+                StartCoroutine(Fire());
             }
-            if (_dashCooldown < 0)
+
+            Laser.SetActive(HasLaser);
+        }
+
+        IEnumerator Fire()
+        {
+            _canFire = false;
+            Instantiate(SparklePrefab, transform.position + new Vector3(Random.Range(-0.5f,0.5f),0), Quaternion.identity);
+            if (HasLaser)
             {
-                _dashCooldown = 0;
+                yield return new WaitForSeconds(LaserReloadTime);
             }
+            else
+            {
+                yield return new WaitForSeconds(ReloadTime);
+            }
+            _canFire = true;
         }
 
         IEnumerator Dash(Vector2 moveValue)
@@ -51,13 +86,28 @@ namespace Player
             Vector3 dashStart = transform.position;
             Vector3 dashTarget = transform.position + new Vector3(moveValue.x, moveValue.y) * DashDistance;
             float timer = 0;
-            _dashCooldown = DashCooldown;
+            _canDash = false;
+            IsDashing = true;
+            _dashCharges--;
+
             while (timer < DashTime)
             {
                 transform.position = Vector3.Lerp(dashStart,dashTarget,timer / DashTime);
                 timer += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+            IsDashing = false;
+
+            StartCoroutine(DoDashCooldown());
+            yield return new WaitForSeconds(DashLongCooldown);
+            _dashCharges++;
+        }
+
+        //probably a better way to do this but it works
+        IEnumerator DoDashCooldown()
+        {
+            yield return new WaitForSeconds(DashCooldown);
+            _canDash = true;
         }
     }
 }
