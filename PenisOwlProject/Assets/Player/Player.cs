@@ -62,6 +62,8 @@ namespace Player
         public bool IsDashing = false; //will use this for Iframes
 
 
+        public Vector2 ArenaSize;
+
         private float _health;
         private bool _canDash = true;
         private bool _canFire = true;
@@ -107,7 +109,16 @@ namespace Player
 
             Laser.SetActive(HasLaser && fireValue);
 
-            
+            if (_health > MaxHealth)
+            {
+                _health = MaxHealth + Mathf.Max(0,(_health - MaxHealth) - Time.deltaTime);
+                HealthBar.SetHealth(Health, MaxHealth);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -ArenaSize.x, ArenaSize.x), Mathf.Clamp(transform.position.y, -ArenaSize.y, ArenaSize.y));
         }
 
         IEnumerator Fire()
