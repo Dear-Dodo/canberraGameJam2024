@@ -192,11 +192,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Wobbler:
     WobbleStrength: 0.1
-    WobbleFrequency: 15
+    WobbleFrequencyPerUnit: 2
     WobbleSpeed: 1
     WobbleEaseDistance: 0.3
     WobbleTimeOffset: 0
-    LineWidth: 0.1
+    LineWidth: 0.05
     _LineStartPoint: {x: 0, y: 0}
     _LineEndPoint: {x: 0, y: 0}
     _DivisionsPerUnit: 15

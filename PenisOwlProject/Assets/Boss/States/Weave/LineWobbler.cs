@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Boss.States.Weave
 {
@@ -11,7 +12,7 @@ namespace Boss.States.Weave
         #region Fields
         
         public float WobbleStrength = 0.2f;
-        public float WobbleFrequency = 1.0f;
+        public float WobbleFrequencyPerUnit = 1.0f;
         public float WobbleSpeed = 1.0f;
         public float WobbleEaseDistance;
         public float WobbleTimeOffset;
@@ -154,7 +155,8 @@ namespace Boss.States.Weave
         protected Vector2 GetWobbleOffset(float t, float easeDuration)
         {
             float wobbleTime = (Time.time + WobbleTimeOffset) * WobbleSpeed;
-            float wobbleFactor = Mathf.Sin(wobbleTime + WobbleFrequency * t) * WobbleStrength;
+            float frequency = WobbleFrequencyPerUnit * LineLength * t;
+            float wobbleFactor = Mathf.Sin(wobbleTime + frequency) * WobbleStrength;
             return WobbleAxis * (wobbleFactor * GetEaseFactor(easeDuration, t));
         }
         

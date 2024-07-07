@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Wobbler:
     WobbleStrength: 0.1
-    WobbleFrequency: 15
+    WobbleFrequencyPerUnit: 2
     WobbleSpeed: 1
     WobbleEaseDistance: 1
     WobbleTimeOffset: 0
