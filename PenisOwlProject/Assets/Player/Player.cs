@@ -69,9 +69,13 @@ namespace Player
         IEnumerator Fire()
         {
             _canFire = false;
-            Instantiate(SparklePrefab, transform.position + new Vector3(Random.Range(-0.5f,0.5f),0), Quaternion.identity);
+            float offset = Random.Range(-0.5f, 0.5f);
+            SparkleBullet sparkleBullet = Instantiate(SparklePrefab, transform.position + new Vector3(offset,0), Quaternion.identity);
             if (HasLaser)
             {
+                sparkleBullet.Offset = offset;
+                sparkleBullet.LaserMode = true;
+                sparkleBullet.Player = gameObject;
                 yield return new WaitForSeconds(LaserReloadTime);
             }
             else
