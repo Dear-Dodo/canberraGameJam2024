@@ -147,10 +147,19 @@ namespace Player
             }
             IsDashing = false;
 
-            StartCoroutine(DoDashCooldown());
+            if (_dashCharges < DashCharges)
+            {
+                StartCoroutine(DoDashCooldown());
+            } else
+            {
+                _canDash = true;
+            }
             yield return new WaitForSeconds(DashLongCooldown);
-            _dashCharges++;
-            DashCounter.Redraw((int)_dashCharges);
+            if (_dashCharges < DashCharges)
+            {
+                _dashCharges++;
+                DashCounter.Redraw((int)_dashCharges);
+            }
         }
 
         //probably a better way to do this but it works
@@ -180,11 +189,30 @@ namespace Player
         public void Heal(float healing)
         {
             _health += healing;
-            if (_health > MaxHealth)
+            if (_health > MaxHealth * 2f)
             {
-                _health = MaxHealth;
+                _health = MaxHealth * 2f;
             }
             HealthBar.SetHealth(Health, MaxHealth);
+        }
+
+        public void GiveLaser(float Duration)
+        {
+            StopCoroutine(nameof(LaserTime));
+            StartCoroutine(LaserTime(Duration));
+        }
+
+        private IEnumerator LaserTime(float Duration)
+        {
+            HasLaser = true;
+            yield return new WaitForSeconds(Duration);
+            HasLaser = false;
+        }
+
+        public void GiveDashs(int dashCount)
+        {
+            _dashCharges += dashCount;
+            DashCounter.Redraw((int)_dashCharges);
         }
     }
 }
