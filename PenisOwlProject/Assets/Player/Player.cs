@@ -63,7 +63,7 @@ namespace Player
                 StartCoroutine(Fire());
             }
 
-            Laser.SetActive(HasLaser);
+            Laser.SetActive(HasLaser && fireValue);
         }
 
         IEnumerator Fire()

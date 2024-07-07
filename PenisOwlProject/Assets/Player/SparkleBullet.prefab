@@ -98,9 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f353d5fa3a93fd24ab871d2cbd07b925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 10
+  Velocity: 12
   Damage: 1
-  Lifetime: 1
+  Lifetime: 2
+  Player: {fileID: 0}
+  Offset: 0
+  LaserMode: 0
 --- !u!50 &6930627648845926619
 Rigidbody2D:
   serializedVersion: 4
