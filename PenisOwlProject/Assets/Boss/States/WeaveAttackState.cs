@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Boss.States
 {
     [Serializable]
-    public class OwlState : BossState
+    public class WeaveAttackState : BossState
     {
-        public OwlState(BossController boss) : base(boss)
+        public WeaveAttackState(BossController boss) : base(boss)
         {
         }
         
