@@ -8,17 +8,13 @@ namespace Boss
 {
     public abstract class BossState
     {
-        protected BossController Boss;
+        public BossController Boss;
         private CancellationTokenSource _CancellationSource;
-
-        protected BossState(BossController boss)
-        {
-            Boss = boss;
-        }
 
         public void StartState()
         {
             _CancellationSource = new CancellationTokenSource();
+            DoBehaviour(_CancellationSource.Token);
         }
 
         public void EndState()
@@ -26,6 +22,6 @@ namespace Boss
             _CancellationSource.Cancel();
         }
 
-        protected abstract void DoBehaviour(CancellationTokenSource cancellationToken);
+        protected abstract void DoBehaviour(CancellationToken cancellationToken);
     }
 }
