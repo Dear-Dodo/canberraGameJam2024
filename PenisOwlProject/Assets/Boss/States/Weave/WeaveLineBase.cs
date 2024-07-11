@@ -9,6 +9,8 @@ namespace Boss.States.Weave
         [SerializeField]
         protected LineWobbler Wobbler;
 
+        public float Damage;
+
         protected virtual void Awake()
         {
             Wobbler.Initialise(GetComponent<LineRenderer>(), GetComponent<EdgeCollider2D>());
@@ -17,6 +19,14 @@ namespace Boss.States.Weave
         protected virtual void Update()
         {
             Wobbler.UpdateLine();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (Wobbler.Lifetime > Wobbler.FadeInTime && collision.gameObject.TryGetComponent(out Player.Player player))
+            {
+                player.Damage(Damage);
+            }
         }
     }
 }

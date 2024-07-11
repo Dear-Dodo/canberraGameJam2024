@@ -8,8 +8,11 @@ namespace Boss
 {
     public abstract class BossState
     {
+        [HideInInspector]
         public BossController Boss;
         private CancellationTokenSource _CancellationSource;
+
+        public event Action OnAttackCompletion;
 
         public void StartState()
         {
@@ -20,6 +23,11 @@ namespace Boss
         public void EndState()
         {
             _CancellationSource.Cancel();
+        }
+
+        protected void CompleteAttack()
+        {
+            OnAttackCompletion?.Invoke();
         }
 
         protected abstract void DoBehaviour(CancellationToken cancellationToken);

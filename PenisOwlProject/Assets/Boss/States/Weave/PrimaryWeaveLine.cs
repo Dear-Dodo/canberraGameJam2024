@@ -1,4 +1,5 @@
 using UnityEngine;
+using Player;
 
 namespace Boss.States.Weave
 {
@@ -7,7 +8,7 @@ namespace Boss.States.Weave
         public Vector3 GetPointWorldSpace(float t)
         {
             Vector3 localPoint = Wobbler.GetPoint(t);
-            return transform.TransformVector(localPoint);
+            return transform.TransformPoint(localPoint);
         }
         
         public void InitialiseLine(Vector2 startPoint, Vector2 endPoint, float timeOffset)

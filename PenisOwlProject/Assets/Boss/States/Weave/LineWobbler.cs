@@ -17,6 +17,9 @@ namespace Boss.States.Weave
         public float WobbleEaseDistance;
         public float WobbleTimeOffset;
         public float LineWidth = 0.2f;
+        public float FadeInTime;
+        [HideInInspector]
+        public float Lifetime;
 
         [SerializeField] private Vector2 _LineStartPoint;
         [SerializeField] private Vector2 _LineEndPoint;
@@ -33,6 +36,7 @@ namespace Boss.States.Weave
         protected float LineLength;
         protected int DivisionCount;
         protected float NormalizedStepSize;
+
         
         #endregion
         #region Initialisation
@@ -41,6 +45,7 @@ namespace Boss.States.Weave
         {
             LineRenderer = lineRenderer;
             EdgeCollider = edgeCollider;
+            Lifetime = 0;
             IsDirty = true;
         }
         
@@ -93,6 +98,16 @@ namespace Boss.States.Weave
                 RecalculateValues();
                 IsDirty = false;
             }
+            Lifetime += Time.deltaTime;
+
+            if (Lifetime < FadeInTime)
+            {
+                LineRenderer.material.color = new Color(LineRenderer.material.color.r, LineRenderer.material.color.g, LineRenderer.material.color.b, Lifetime / FadeInTime);
+            } else if (Lifetime < FadeInTime + 0.1f)
+            {
+                LineRenderer.material.color = new Color(LineRenderer.material.color.r, LineRenderer.material.color.g, LineRenderer.material.color.b, 1);
+            }
+
             LineRenderer.widthMultiplier = LineWidth * 2;
             EdgeCollider.edgeRadius = LineWidth;
             

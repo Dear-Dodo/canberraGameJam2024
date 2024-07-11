@@ -61,6 +61,14 @@ namespace Player
         [HideInInspector]
         public bool IsDashing = false; //will use this for Iframes
 
+        [HideInInspector]
+        public bool IFrames = false;
+
+        public Material BaseMat;
+        public Material IFrameMat;
+
+        public MeshRenderer Geo;
+
 
         public Vector2 ArenaSize;
 
@@ -86,21 +94,30 @@ namespace Player
             DashCounter.Redraw((int)_dashCharges);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-            moveValue = moveValue.normalized * Mathf.Clamp01(moveValue.magnitude); //Fix diagonals being faster on keyboard
 
             bool dashValue = _dashAction.WasPressedThisFrame();
 
-            bool fireValue = _fireAction.IsPressed();
-
-            transform.position += new Vector3(moveValue.x, moveValue.y) * MoveSpeed;
             if (dashValue && _canDash && _dashCharges > 0)
             {
                 StartCoroutine(Dash(moveValue));
             }
+        }
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            Vector2 moveValue = _moveAction.ReadValue<Vector2>();
+            moveValue = moveValue.normalized * Mathf.Clamp01(moveValue.magnitude); //Fix diagonals being faster on keyboard
+
+            
+
+            bool fireValue = _fireAction.IsPressed();
+
+            transform.position += new Vector3(moveValue.x, moveValue.y) * MoveSpeed;
+            
 
             if(fireValue && _canFire)
             {
@@ -111,7 +128,7 @@ namespace Player
 
             if (_health > MaxHealth)
             {
-                _health = MaxHealth + Mathf.Max(0,(_health - MaxHealth) - Time.deltaTime);
+                _health = MaxHealth + Mathf.Max(0,(_health - MaxHealth) - Time.fixedDeltaTime);
                 HealthBar.SetHealth(Health, MaxHealth);
             }
         }
@@ -146,15 +163,15 @@ namespace Player
             Vector3 dashTarget = transform.position + new Vector3(moveValue.x, moveValue.y) * DashDistance;
             float timer = 0;
             _canDash = false;
-            IsDashing = true;
+            DoIframe(DashTime * 2f);
             _dashCharges--;
             DashCounter.Redraw((int)_dashCharges);
 
             while (timer < DashTime)
             {
                 transform.position = Vector3.Lerp(dashStart,dashTarget,timer / DashTime);
-                timer += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
+                timer += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
             }
             IsDashing = false;
 
@@ -182,11 +199,13 @@ namespace Player
 
         public void Damage(float damage)
         {
-            if (!IsDashing)
+            if (!IFrames)
             {
                 _health -= damage;
 
                 HealthBar.SetHealth(Health, MaxHealth);
+
+                DoIframe(0.5f);
 
                 if (_health <= 0)
                 {
@@ -224,6 +243,21 @@ namespace Player
         {
             _dashCharges += dashCount;
             DashCounter.Redraw((int)_dashCharges);
+        }
+
+        private void DoIframe(float Duration)
+        {
+            StopCoroutine(nameof(GiveIFrames));
+            StartCoroutine(GiveIFrames(Duration));
+        }
+
+        private IEnumerator GiveIFrames(float duration)
+        {
+            IFrames = true;
+            Geo.material = IFrameMat;
+            yield return new WaitForSeconds(duration);
+            IFrames = false;
+            Geo.material = BaseMat;
         }
     }
 }

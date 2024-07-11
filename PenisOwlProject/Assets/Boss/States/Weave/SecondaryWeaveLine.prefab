@@ -55,7 +55,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c36b41eae73cbab48a43a188b281c211, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,7 +166,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -196,7 +196,10 @@ MonoBehaviour:
     WobbleSpeed: 1
     WobbleEaseDistance: 0.3
     WobbleTimeOffset: 0
-    LineWidth: 0.05
+    LineWidth: 0.125
+    FadeInTime: 0.1
+    Lifetime: 0
     _LineStartPoint: {x: 0, y: 0}
     _LineEndPoint: {x: 0, y: 0}
     _DivisionsPerUnit: 15
+  Damage: 0
