@@ -22,19 +22,19 @@ namespace Boss
 
         private BossState _CurrentState;
 
-        private List<BossState> _AttackPattern = new List<BossState>();
+        private readonly List<BossState> _States = new();
 
-        private int _Attack = 0;
+        private int _StateIndex = 0;
 
         private void Awake()
         {
             _WeaveAttackState.Boss = this;
             _WeaveAttackState.OnAttackCompletion += NextAttack;
-            _AttackPattern.Add(_WeaveAttackState);
+            _States.Add(_WeaveAttackState);
 
             _SpinnyThingAttackState.Boss = this;
             _SpinnyThingAttackState.OnAttackCompletion += NextAttack;
-            _AttackPattern.Add(_SpinnyThingAttackState);
+            _States.Add(_SpinnyThingAttackState);
         }
 
         private void Start() => StartBehaviour();
@@ -47,15 +47,15 @@ namespace Boss
 
         private void NextAttack()
         {
-            _Attack++;
-            if (_Attack >= _AttackPattern.Count)
+            _StateIndex++;
+            if (_StateIndex >= _States.Count)
             {
-                _Attack = 0;
+                _StateIndex = 0;
             }
-            _CurrentState = _AttackPattern[_Attack];
+            _CurrentState = _States[_StateIndex];
             Pulse.SendEvent("Pulse");
             _CurrentState.StartState();
-            Debug.Log(_Attack);
+            Debug.Log(_StateIndex);
         }
     }
 }
