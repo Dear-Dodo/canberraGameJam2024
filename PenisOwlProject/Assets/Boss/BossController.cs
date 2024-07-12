@@ -40,7 +40,9 @@ namespace Boss
         [SerializeField]
         private Image _BossBar;
         [SerializeField]
-        CinemachineBasicMultiChannelPerlin _CameraShake;
+        private CinemachineBasicMultiChannelPerlin _CameraShake;
+
+        public GameObject VictoryScreen;
 
         private BossState _CurrentState;
 
@@ -158,6 +160,8 @@ namespace Boss
                 t += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+            Time.timeScale = 0;
+            VictoryScreen.SetActive(true);
         }
 
         public void Damage(float Damage)

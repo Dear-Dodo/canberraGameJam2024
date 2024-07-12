@@ -72,6 +72,7 @@ namespace Player
 
         public CinemachineBasicMultiChannelPerlin _CameraShake;
 
+        public GameObject GameOverScreen;
 
         public Vector2 ArenaSize;
 
@@ -214,8 +215,8 @@ namespace Player
                 if (_health <= 0)
                 {
                     _health = 0;
-                    //die
-                    Debug.Log("you are dead");
+                    Time.timeScale = 0;
+                    GameOverScreen.SetActive(true);
                 }
             }
         }
