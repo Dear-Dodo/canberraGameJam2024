@@ -40,7 +40,11 @@ namespace Boss
         [SerializeField]
         private Image _BossBar;
         [SerializeField]
-        CinemachineBasicMultiChannelPerlin _CameraShake;
+        private CinemachineBasicMultiChannelPerlin _CameraShake;
+
+        public GameObject Shield;
+
+        public GameObject VictoryScreen;
 
         private BossState _CurrentState;
 
@@ -90,6 +94,10 @@ namespace Boss
                     _OwlGeo.material = _OwlMat;
                     _CameraShake.AmplitudeGain = 1;
                     _dying = true;
+                    if (_PhaseIndex + 1 < MaxPhases)
+                    {
+                        Shield.SetActive(true);
+                    }
                 }
             }
         }
@@ -120,6 +128,7 @@ namespace Boss
                 {
                     _health = MaxHealth;
                     _dying = false;
+                    Shield.SetActive(false);
                     _CameraShake.AmplitudeGain = 0;
                     _BossBar.color = new Color(0.75f, 0, 0);
                     _BossBar.fillAmount = 1;
@@ -158,6 +167,8 @@ namespace Boss
                 t += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+            Time.timeScale = 0;
+            VictoryScreen.SetActive(true);
         }
 
         public void Damage(float Damage)
