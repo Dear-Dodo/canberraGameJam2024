@@ -480,6 +480,10 @@ PrefabInstance:
       value: Owl
       objectReference: {fileID: 0}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
+      propertyPath: Shield
+      value: 
+      objectReference: {fileID: 929580470}
+    - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: _OwlGeo
       value: 
       objectReference: {fileID: 662770332}
@@ -497,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0a275f5e5fd2ddf47a8949ccf45ddb16, type: 2}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: MaxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: _CameraShake
@@ -1730,7 +1734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Play Again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2088,6 +2092,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849366261}
   m_CullTransparentMesh: 1
+--- !u!1 &929580470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f6c287f7dde1f14a9c805ba4144e317, type: 3}
+  m_PrefabInstance: {fileID: 159195290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141943426
 GameObject:
   m_ObjectHideFlags: 0
