@@ -10,6 +10,7 @@ using UnityEngine.VFX;
 using System.Collections;
 using UnityEngine.UI;
 using Unity.Cinemachine;
+using FMODUnity;
 
 namespace Boss
 {
@@ -45,6 +46,8 @@ namespace Boss
         public GameObject Shield;
 
         public GameObject VictoryScreen;
+
+        public StudioEventEmitter Music;
 
         private BossState _CurrentState;
 
@@ -100,6 +103,7 @@ namespace Boss
                     }
                 }
             }
+            Music.SetParameter("Phases", _PhaseIndex + 1);
         }
 
         public void StartBehaviour()
@@ -126,6 +130,7 @@ namespace Boss
                 _PhaseIndex++;
                 if (_PhaseIndex < MaxPhases)
                 {
+                    MaxHealth *= 0.75f;
                     _health = MaxHealth;
                     _dying = false;
                     Shield.SetActive(false);
@@ -133,9 +138,10 @@ namespace Boss
                     _BossBar.color = new Color(0.75f, 0, 0);
                     _BossBar.fillAmount = 1;
 
-                    _WeaveAttackState.SecondaryWeaveInterval -= 1.25f;
+                    _WeaveAttackState.SecondaryWeaveInterval = Mathf.Max(_WeaveAttackState.SecondaryWeaveInterval - 1f,1.5f);
                     _WeaveAttackState.WeaveCount += 2;
                     _SpinnyThingAttackState.Count += 2;
+                    _SpinnyThingAttackState.Speed += 10;
                     _MagpieAttackState.MagpieSpeed += 2;
                     _MagpieAttackState.MagpieCount += 20;
                     _MagpieAttackState.SpawnInterval = 0.1f;

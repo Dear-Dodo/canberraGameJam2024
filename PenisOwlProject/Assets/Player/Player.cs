@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using FMODUnity;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -76,6 +77,8 @@ namespace Player
 
         public Vector2 ArenaSize;
 
+        public StudioEventEmitter Music;
+
         private float _health;
         private bool _canDash = true;
         private bool _canFire = true;
@@ -108,6 +111,7 @@ namespace Player
             {
                 StartCoroutine(Dash(moveValue));
             }
+            Music.SetParameter("Health", _health);
         }
 
         // Update is called once per frame
