@@ -8,7 +8,8 @@ namespace Boss.States.Magpie
         private const float TargetReachedDistanceSqr = 0.01f * 0.01f;
             
         public float Speed = 2;
-        
+        public float Damage;
+
         [HideInInspector] public Vector3 Target;
 
         public event Action<Magpie> ArrivedAtTarget;
@@ -30,6 +31,14 @@ namespace Boss.States.Magpie
             
             if ((Target - position).sqrMagnitude < TargetReachedDistanceSqr)
                 ArrivedAtTarget?.Invoke(this);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Player.Player player))
+            {
+                player.Damage(Damage);
+            }
         }
     }
 }

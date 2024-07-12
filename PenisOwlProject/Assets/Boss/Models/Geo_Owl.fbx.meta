@@ -3,7 +3,12 @@ guid: 4cb9f889b392dd939a72a7db83f085b1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Owl
+    second: {fileID: 2100000, guid: b495c759a1c4ec849a344ad5d582200b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
