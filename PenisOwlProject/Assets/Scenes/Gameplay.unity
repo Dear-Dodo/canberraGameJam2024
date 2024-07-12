@@ -330,9 +330,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 540682308}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
+      propertyPath: _OwlMat2
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a275f5e5fd2ddf47a8949ccf45ddb16, type: 2}
+    - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: MaxHealth
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
+      propertyPath: _CameraShake
+      value: 
+      objectReference: {fileID: 508867369}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: _OwlDeathMat
       value: 
@@ -341,6 +349,10 @@ PrefabInstance:
       propertyPath: _OwlDamageMat
       value: 
       objectReference: {fileID: 2100000, guid: 77bb3f656dafc1b40962a2ebb9edc29b, type: 2}
+    - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
+      propertyPath: _OwlDamageMat2
+      value: 
+      objectReference: {fileID: 2100000, guid: 894df5b0a35e31848b3f640e6c3df435, type: 2}
     - target: {fileID: 7448904628626891700, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -368,6 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 508867368}
   - component: {fileID: 508867367}
+  - component: {fileID: 508867369}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -433,6 +446,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &508867369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508867366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1442,10 @@ PrefabInstance:
       propertyPath: DashCounter
       value: 
       objectReference: {fileID: 1369753128}
+    - target: {fileID: 7920915810644867237, guid: b5660e01b0aafc3458f3c4984b5b839d, type: 3}
+      propertyPath: _CameraShake
+      value: 
+      objectReference: {fileID: 508867369}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

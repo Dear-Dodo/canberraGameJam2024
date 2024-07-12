@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -68,6 +69,8 @@ namespace Player
         public Material IFrameMat;
 
         public MeshRenderer Geo;
+
+        public CinemachineBasicMultiChannelPerlin _CameraShake;
 
 
         public Vector2 ArenaSize;
@@ -206,6 +209,7 @@ namespace Player
                 HealthBar.SetHealth(Health, MaxHealth);
 
                 DoIframe(0.5f);
+                StartCoroutine(CameraShake());
 
                 if (_health <= 0)
                 {
@@ -258,6 +262,17 @@ namespace Player
             yield return new WaitForSeconds(duration);
             IFrames = false;
             Geo.material = BaseMat;
+        }
+
+        private IEnumerator CameraShake()
+        {
+            float gain = _CameraShake.AmplitudeGain;
+            _CameraShake.AmplitudeGain += 0.5f;
+            yield return new WaitForSeconds(0.1f);
+            if (_CameraShake.AmplitudeGain == gain + 0.5f)
+            {
+                _CameraShake.AmplitudeGain = gain;
+            }
         }
     }
 }

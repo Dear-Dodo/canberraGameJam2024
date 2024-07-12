@@ -9,6 +9,7 @@ using UnityEngine.Serialization;
 using UnityEngine.VFX;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.Cinemachine;
 
 namespace Boss
 {
@@ -31,9 +32,15 @@ namespace Boss
         [SerializeField]
         private Material _OwlDamageMat;
         [SerializeField]
+        private Material _OwlMat2;
+        [SerializeField]
+        private Material _OwlDamageMat2;
+        [SerializeField]
         private Material _OwlDeathMat;
         [SerializeField]
         private Image _BossBar;
+        [SerializeField]
+        CinemachineBasicMultiChannelPerlin _CameraShake;
 
         private BossState _CurrentState;
 
@@ -42,9 +49,15 @@ namespace Boss
 
         private int _StateIndex = 0;
 
+        private int _PhaseIndex = 0;
+
         public float MaxHealth;
 
+        public float MaxPhases = 2;
+
         private float _health;
+
+        private bool _dying = false;
 
         private void Awake()
         {
@@ -67,9 +80,17 @@ namespace Boss
 
         private void Update()
         {
-            if (_health <= 0)
+            if (_health <= 0 && _PhaseIndex < MaxPhases)
             {
                 _health = 0;
+                if (!_dying)
+                {
+                    _OwlMat = _OwlMat2;
+                    _OwlDamageMat = _OwlDamageMat2;
+                    _OwlGeo.material = _OwlMat;
+                    _CameraShake.AmplitudeGain = 1;
+                    _dying = true;
+                }
             }
         }
 
@@ -81,7 +102,7 @@ namespace Boss
 
         private void NextAttack()
         {
-            if (_health > 0)
+            if (_health > 0 && _PhaseIndex < MaxPhases)
             {
                 _StateIndex++;
                 if (_StateIndex >= _States.Count)
@@ -94,7 +115,35 @@ namespace Boss
             }
             else
             {
-                StartCoroutine(Die()); //die at the end of the next attack
+                _PhaseIndex++;
+                if (_PhaseIndex < MaxPhases)
+                {
+                    _health = MaxHealth;
+                    _dying = false;
+                    _CameraShake.AmplitudeGain = 0;
+                    _BossBar.color = new Color(0.75f, 0, 0);
+                    _BossBar.fillAmount = 1;
+
+                    _WeaveAttackState.SecondaryWeaveInterval -= 1.25f;
+                    _WeaveAttackState.WeaveCount += 2;
+                    _SpinnyThingAttackState.Count += 2;
+                    _MagpieAttackState.MagpieSpeed += 2;
+                    _MagpieAttackState.MagpieCount += 20;
+                    _MagpieAttackState.SpawnInterval = 0.1f;
+
+                    _StateIndex++;
+                    if (_StateIndex >= _States.Count)
+                    {
+                        _StateIndex = 0;
+                    }
+                    _CurrentState = _States[_StateIndex];
+                    Pulse.SendEvent("Pulse");
+                    _CurrentState.StartState();
+                }
+                else
+                {
+                    StartCoroutine(Die()); //die at the end of the next attack
+                }
             }
         }
 
