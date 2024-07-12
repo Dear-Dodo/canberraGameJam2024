@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Boss.States;
+using Boss.States.Magpie;
 using Boss.States.Weave;
 using Boss.States.Spinny;
 using UnityEngine;
@@ -19,22 +20,28 @@ namespace Boss
         private WeaveAttackState _WeaveAttackState;
         [SerializeField]
         private SpinnyThingAttackState _SpinnyThingAttackState;
+        [SerializeField] 
+        private MagpieAttackState _MagpieAttackState;
 
         private BossState _CurrentState;
 
-        private List<BossState> _AttackPattern = new List<BossState>();
+        private readonly List<BossState> _States = new();
 
-        private int _Attack = 0;
+        private int _StateIndex = 0;
 
         private void Awake()
         {
-            _WeaveAttackState.Boss = this;
-            _WeaveAttackState.OnAttackCompletion += NextAttack;
-            _AttackPattern.Add(_WeaveAttackState);
+            InitState(_WeaveAttackState);
+            InitState(_SpinnyThingAttackState);
+            InitState(_MagpieAttackState);
+            return;
 
-            _SpinnyThingAttackState.Boss = this;
-            _SpinnyThingAttackState.OnAttackCompletion += NextAttack;
-            _AttackPattern.Add(_SpinnyThingAttackState);
+            void InitState(BossState state)
+            {
+                state.Boss = this;
+                state.OnAttackCompletion += NextAttack;
+                _States.Add(state);
+            }
         }
 
         private void Start() => StartBehaviour();
@@ -47,15 +54,15 @@ namespace Boss
 
         private void NextAttack()
         {
-            _Attack++;
-            if (_Attack >= _AttackPattern.Count)
+            _StateIndex++;
+            if (_StateIndex >= _States.Count)
             {
-                _Attack = 0;
+                _StateIndex = 0;
             }
-            _CurrentState = _AttackPattern[_Attack];
+            _CurrentState = _States[_StateIndex];
             Pulse.SendEvent("Pulse");
             _CurrentState.StartState();
-            Debug.Log(_Attack);
+            Debug.Log(_StateIndex);
         }
     }
 }

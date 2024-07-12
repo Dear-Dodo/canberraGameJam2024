@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityAsync;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 namespace Boss.States.Spinny {
     [Serializable]
     public class SpinnyThingAttackState :BossState
@@ -37,14 +39,16 @@ namespace Boss.States.Spinny {
 
             await Await.Seconds(Duration);
 
-
-            for (int i = SpinnyThings.Count - 1; i >= 0; i--)
+            if (Application.isPlaying)
             {
-                SpinnyThing spinnyThing = SpinnyThings[i];
-                GameObject.Destroy(spinnyThing.gameObject);
+                for (int i = SpinnyThings.Count - 1; i >= 0; i--)
+                {
+                    SpinnyThing spinnyThing = SpinnyThings[i];
+                    Object.Destroy(spinnyThing.gameObject);
+                }
+                SpinnyThings.Clear();
+                CompleteAttack();
             }
-
-            CompleteAttack();
         }
 
 

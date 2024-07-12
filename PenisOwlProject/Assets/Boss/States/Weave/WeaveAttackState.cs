@@ -45,10 +45,7 @@ namespace Boss.States.Weave
                 i++;
             }
 
-            while (_ActiveWeaveCount > 0)
-            {
-                await Await.NextUpdate();
-            }
+            await Await.Until(() => _ActiveWeaveCount == 0);
 
             for (int j = primaryWeaves.Count - 1; j >= 0; j--)
             {
