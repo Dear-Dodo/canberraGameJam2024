@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ad4dfeaa-8217-4a06-86d7-a2c48433a9e2}">
+		<property name="assetPath">
+			<value>SFX_enemy_Magpie_swoosh_02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.23181405895691609</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b19d8c4b-4f3f-48d5-84df-c2602422b192}</destination>
+		</relationship>
+	</object>
+</objects>

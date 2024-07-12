@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{615f591f-b4fd-4ec4-8b4b-c441ec6705c9}">
+		<property name="assetPath">
+			<value>EFX SD Wind Soft Whistling Gusts 04.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>120.13379166666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b19d8c4b-4f3f-48d5-84df-c2602422b192}</destination>
+		</relationship>
+	</object>
+</objects>

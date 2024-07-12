@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6c8a70e6-22c8-43af-a34d-8c1d2a79d6ca}">
+		<property name="assetPath">
+			<value>22 MKH8040 Cars, Vehicles, traffic, road, rural, wave, moderate speed.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>192</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>42.197333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b19d8c4b-4f3f-48d5-84df-c2602422b192}</destination>
+		</relationship>
+	</object>
+</objects>
