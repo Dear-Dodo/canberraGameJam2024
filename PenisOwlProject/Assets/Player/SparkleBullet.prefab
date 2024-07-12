@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3192003223667914061}
   - component: {fileID: 279877688004288392}
   - component: {fileID: 6930627648845926619}
+  - component: {fileID: 3099370370676622167}
   m_Layer: 0
   m_Name: SparkleBullet
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b3cb53818e9aff542adfdc81fb272d00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +105,10 @@ MonoBehaviour:
   Player: {fileID: 0}
   Offset: 0
   LaserMode: 0
+  Sprites:
+  - {fileID: 21300000, guid: b3cb53818e9aff542adfdc81fb272d00, type: 3}
+  - {fileID: 21300000, guid: 614edf3fcd7ef5e4995a1a71f8a1345c, type: 3}
+  - {fileID: 21300000, guid: 9055e9f6a2572e64cbbab6957a44fbce, type: 3}
 --- !u!50 &6930627648845926619
 Rigidbody2D:
   serializedVersion: 4
@@ -131,3 +136,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &3099370370676622167
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7244560157324833515}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10.24
