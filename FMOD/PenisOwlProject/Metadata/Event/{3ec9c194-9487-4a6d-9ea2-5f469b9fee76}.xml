@@ -54,7 +54,7 @@
 			<destination>{c2526873-a243-4415-8965-8f12ae5cbfd8}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{88f537fc-eea9-4833-8146-7de139f2e6de}</destination>
+			<destination>{5e0a13e1-17a9-4efd-94ad-d9f6531bcc1b}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{0bce5508-bbe2-465b-a46d-83182bbc5760}" />
@@ -69,7 +69,7 @@
 	</object>
 	<object class="GroupTrack" id="{2400dffb-c924-4db9-808d-281c6d532216}">
 		<relationship name="modules">
-			<destination>{b3c4acee-7f3c-4090-b997-3e36be66c2e4}</destination>
+			<destination>{901aa344-d301-4a22-bb29-960a515dba34}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{c9ec831e-b11f-467f-993c-8707ef5d49dc}</destination>
@@ -77,8 +77,8 @@
 	</object>
 	<object class="Timeline" id="{6ce9593f-7eb8-45a2-ac58-6e35d9709e18}">
 		<relationship name="modules">
-			<destination>{b3c4acee-7f3c-4090-b997-3e36be66c2e4}</destination>
 			<destination>{963a3cc1-96e7-4bf7-9f64-1d7a8d3c05b7}</destination>
+			<destination>{901aa344-d301-4a22-bb29-960a515dba34}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{6a32779a-9562-43c4-9136-b691cbe60c90}">
@@ -140,18 +140,18 @@
 			<destination>{6a32779a-9562-43c4-9136-b691cbe60c90}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{b3c4acee-7f3c-4090-b997-3e36be66c2e4}">
+	<object class="MultiSound" id="{901aa344-d301-4a22-bb29-960a515dba34}">
 		<property name="length">
-			<value>8</value>
+			<value>0.5</value>
 		</property>
 		<relationship name="modulators">
-			<destination>{e4477315-50b3-4753-ae19-aa4ad62e4f2c}</destination>
+			<destination>{a60ba4f9-04d3-46cf-ab92-4c97485d9976}</destination>
 		</relationship>
 		<relationship name="sounds">
-			<destination>{0ee5bddf-9878-45d3-9c48-91e4d446f301}</destination>
-			<destination>{090b98e5-c197-45d8-871e-205dc4042767}</destination>
-			<destination>{f345b3a8-464b-418b-a1fa-2a6cbefd3922}</destination>
-			<destination>{fbdfc7d5-f9e8-401a-91dd-a4ab33d462c2}</destination>
+			<destination>{20035645-7f2f-43ed-9a6b-94d394694f25}</destination>
+			<destination>{f345d49c-438c-4d35-8dd7-8ef2fb143bdf}</destination>
+			<destination>{58793d09-9c63-449e-91c8-6154b90cdd29}</destination>
+			<destination>{6087ad83-8924-4d4f-89dc-26d96dbcf5c6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{c9ec831e-b11f-467f-993c-8707ef5d49dc}">
@@ -263,30 +263,30 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e80ba751-d377-4893-b03a-c582c0994f2d}" />
-	<object class="RandomizerModulator" id="{e4477315-50b3-4753-ae19-aa4ad62e4f2c}">
+	<object class="RandomizerModulator" id="{a60ba4f9-04d3-46cf-ab92-4c97485d9976}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>3</value>
+			<value>13.5</value>
 		</property>
 	</object>
-	<object class="SingleSound" id="{0ee5bddf-9878-45d3-9c48-91e4d446f301}">
+	<object class="SingleSound" id="{20035645-7f2f-43ed-9a6b-94d394694f25}">
 		<relationship name="audioFile">
 			<destination>{9ac6f9b9-7231-4e79-b73c-790fecd08748}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{090b98e5-c197-45d8-871e-205dc4042767}">
+	<object class="SingleSound" id="{f345d49c-438c-4d35-8dd7-8ef2fb143bdf}">
 		<relationship name="audioFile">
 			<destination>{ad4dfeaa-8217-4a06-86d7-a2c48433a9e2}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{f345b3a8-464b-418b-a1fa-2a6cbefd3922}">
+	<object class="SingleSound" id="{58793d09-9c63-449e-91c8-6154b90cdd29}">
 		<relationship name="audioFile">
 			<destination>{96422184-5c38-4f8f-8486-388a93f4cc5a}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{fbdfc7d5-f9e8-401a-91dd-a4ab33d462c2}">
+	<object class="SingleSound" id="{6087ad83-8924-4d4f-89dc-26d96dbcf5c6}">
 		<relationship name="audioFile">
 			<destination>{9d2b35c0-af20-4b99-a9de-c47fd9005890}</destination>
 		</relationship>
