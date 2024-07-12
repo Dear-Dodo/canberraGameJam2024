@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0a275f5e5fd2ddf47a8949ccf45ddb16, type: 2}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: MaxHealth
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4232282180539438311, guid: 4d3079abfcd366f47acd6798d5902136, type: 3}
       propertyPath: _CameraShake
@@ -2398,8 +2398,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.03529412}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0.03529412}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2419,7 +2419,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 40, z: 1}
+  m_LocalScale: {x: 30, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
